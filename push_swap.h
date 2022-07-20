@@ -22,8 +22,13 @@ typedef struct stack
 
 void    raise_error();
 int     ft_atoi(const char *nptr);
-int is_number(char c);
-int is_sign(char c);
+int     is_number(char c);
+int     is_sign(char c);
+void    swap_a(t_stack *s);
+void    ft_swap(int *a, int *b);
+void    rotate_a(t_stack *s);
+void    rev_rotate_a(t_stack *s);
+void    push_a(t_stack *a, t_stack *b);
 
 
 

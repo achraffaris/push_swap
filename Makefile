@@ -6,10 +6,11 @@ CFLAGS = -Wall -Wextra -Werror -g
 AR = ar rc
 
 SRCS = 	push_swap.c \
-		utils/comp.c \
+		utils/common.c \
 		utils/ft_atoi.c \
 		utils/ft_errors.c \
-
+		utils/stack_a.c \
+		utils/stack_b.c \
 		
 BSRCS = checker.c
 		

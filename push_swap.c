@@ -14,13 +14,15 @@ void    get_nodes(int ac, char **av, t_stack *s)
     {
         current->content = ft_atoi(av[i]);
         if (i == ac - 1)
+        {
+            s->tail = current;
             current->next = NULL;
+        }
         else
             current->next = malloc(sizeof(t_node));
         current = current->next;
         i++;
     }
-    s->tail = current;
 }
 
 t_stack *get_clean_data(int ac, char **av)
@@ -33,17 +35,29 @@ t_stack *get_clean_data(int ac, char **av)
 
 }
 
-int main(int ac, char **av)
+void    print_stack(char *action, t_stack *s)
 {
-    t_stack *s;
-
-    s = get_clean_data(ac, av);
     t_node *head;
 
     head = s->top;
+    printf("----- %s -----\n", action);
     while (head)
     {
-        printf("content = %d\n", head->content);
+        printf("%d\n", head->content);
         head = head->next;
-    }    
+    }
+}
+int main(int ac, char **av)
+{
+    t_stack *a;
+    t_stack *b;
+
+    b = malloc(sizeof(t_stack));
+    a = get_clean_data(ac, av);
+    b->tail = NULL;
+    b->top = NULL;
+    print_stack("Innit", a);
+    push_a(a, b);
+    print_stack("stack a", a);
+    print_stack("stack b", b);
 }
