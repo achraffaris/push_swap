@@ -1,7 +1,5 @@
 #include "../push_swap.h"
 
-
-
 void    swap_a(t_stack *s)
 {
     t_node *a;
@@ -18,10 +16,24 @@ void    push_a(t_stack *a, t_stack *b)
 {
     // move stack_a top_node to be the top_node of stack_b
     t_node *top_node;
+
     top_node = a->top;
-    a->top = top_node->next;
-    b->top = b->top->next;
+    if (a->top->next)
+        a->top = top_node->next;
+    else
+    {
+        a->top = NULL;
+        a->tail = NULL;
+    }
+    if (b->top)
+        top_node->next = b->top;
     b->top = top_node;
+    // is stack is empty
+    if (!b->tail)
+    {
+        b->top->next = NULL;
+        b->tail = b->top;
+    }
 }
 
 void    rotate_a(t_stack *s)

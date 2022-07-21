@@ -11,7 +11,10 @@ SRCS = 	push_swap.c \
 		utils/ft_errors.c \
 		utils/stack_a.c \
 		utils/stack_b.c \
-		
+		utils/checker.c \
+		utils/mini_sort.c \
+		utils/comp.c
+
 BSRCS = checker.c
 		
 BOBJS = $(BSRCS:.c=.o)

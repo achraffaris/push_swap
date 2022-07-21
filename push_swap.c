@@ -29,8 +29,12 @@ t_stack *get_clean_data(int ac, char **av)
 {
     t_stack *s;
 
+    if (args_duplicated(av, ac))
+        raise_error();
     s = malloc(sizeof(t_stack));
     get_nodes(ac, av, s);
+    if (is_sorted(s))
+        raise_error();
     return (s);
 
 }
@@ -47,17 +51,20 @@ void    print_stack(char *action, t_stack *s)
         head = head->next;
     }
 }
+
 int main(int ac, char **av)
 {
     t_stack *a;
     t_stack *b;
 
-    b = malloc(sizeof(t_stack));
     a = get_clean_data(ac, av);
-    b->tail = NULL;
-    b->top = NULL;
-    print_stack("Innit", a);
-    push_a(a, b);
-    print_stack("stack a", a);
-    print_stack("stack b", b);
+    b = malloc(sizeof(t_stack));
+    b->top =NULL;
+    b->tail= NULL;
+    print_stack("stack_a", a);
+    sort_5n(a, b);
+    print_stack("stack_a", a);
+    print_stack("stack_b", b);
+    if (a->top && a->tail)
+        printf("a_top : %d a_tail: %d\n", a->top->content, a->tail->content);
 }

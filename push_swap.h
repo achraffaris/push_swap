@@ -29,10 +29,18 @@ void    ft_swap(int *a, int *b);
 void    rotate_a(t_stack *s);
 void    rev_rotate_a(t_stack *s);
 void    push_a(t_stack *a, t_stack *b);
-
-
-
-
+void    rotate_b(t_stack *s);
+void    rev_rotate_b(t_stack *s);
+void    push_b(t_stack *a, t_stack *b);
+int     args_duplicated(char **av, int ac);
+int     is_sorted(t_stack *s);
+int     ft_strlen(char *str);
+int     ft_strcmp(const char *s1, const char *s2);
+void    sort_3n(t_stack *s);
+int     is_min(t_stack *s, int n);
+int     is_max(t_stack *s, int n);
+void    swap_b(t_stack *s);
+void    sort_5n(t_stack *a, t_stack *b);
 
 
 #endif
