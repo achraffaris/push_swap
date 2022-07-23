@@ -38,34 +38,49 @@ void    sort_3n(t_stack *s)
     }
 }
 
+void    sort_4n(t_stack *a, t_stack *b)
+{
+    if (is_min(a, a->top->next->content))
+        swap_a(a);
+    else if (is_min(a, a->tail->content))
+        rev_rotate_a(a);
+    else if (is_min(a, a->tail->previous->content))
+    {
+        rev_rotate_a(a);
+        rev_rotate_a(a);
+    }
+    push_a(a, b);
+    sort_3n(a);
+    push_b(a, b);
+}
+
 void    sort_5n(t_stack *a, t_stack *b)
 {
-    t_node *tail_antecedent;
-    int n;
-
-    n = a->size - 3;
-    while (n)
+    if (is_min(a, a->top->next->content))
+        swap_a(a);
+    else if (is_min(a, a->tail->content))
+        rev_rotate_a(a);
+    else if (is_min(a, a->top->next->next->content))
     {
-        tail_antecedent = get_tail_antecedent(a);
-        if (is_min(a, a->top->next->content))
-            swap_a(a);
-        else if (is_min(a, a->tail->content))
-            rev_rotate_a(a);
-        else if (is_min(a, tail_antecedent->content))
-        {
-            rev_rotate_a(a);
-            rev_rotate_a(a);
-        }
-        else
-        {
-            rotate_a(a);
-            swap_a(a);
-        }
-        push_b(a, b);
+        rotate_a(a);
+        rotate_a(a);
     }
-    sort_3n(a);
-    if (is_sorted(b))
-        swap_b(b);
+    else if (is_min(a, a->tail->previous->content))
+    {
+        rev_rotate_a(a);
+        rev_rotate_a(a);
+    }
+    push_a(a, b);
+    sort_4n(a, b);
     push_b(a, b);
-    push_b(a, b);
+}
+
+void    mini_sort(t_stack *a, t_stack *b, int ac)
+{
+    if (ac - 1 == 5)
+        sort_5n(a, b);
+    else if (ac - 1 == 4)
+        sort_4n(a, b);
+    else
+        sort_3n(a);
 }

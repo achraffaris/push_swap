@@ -7,11 +7,15 @@ void    get_nodes(int ac, char **av, t_stack *s)
 {
     int     i;
     t_node  *current;
+    t_node  *previous;
+
     i = 1;
     current = malloc(sizeof(t_node));
+    previous = NULL;
     s->top = current;
     while (av[i])
     {
+        current->previous = previous;
         current->content = ft_atoi(av[i]);
         if (i == ac - 1)
         {
@@ -20,6 +24,7 @@ void    get_nodes(int ac, char **av, t_stack *s)
         }
         else
             current->next = malloc(sizeof(t_node));
+        previous = current;
         current = current->next;
         i++;
     }
@@ -62,9 +67,7 @@ int main(int ac, char **av)
     b->top =NULL;
     b->tail= NULL;
     print_stack("stack_a", a);
-    sort_5n(a, b);
+    if (ac - 1 <= 5)
+        mini_sort(a, b, ac);
     print_stack("stack_a", a);
-    print_stack("stack_b", b);
-    if (a->top && a->tail)
-        printf("a_top : %d a_tail: %d\n", a->top->content, a->tail->content);
 }

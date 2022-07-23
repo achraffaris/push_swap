@@ -11,6 +11,7 @@ typedef struct node
 {
     int             content;
     struct  node    *next;
+    struct  node    *previous;
 }   t_node;
 
 typedef struct stack
@@ -41,6 +42,9 @@ int     is_min(t_stack *s, int n);
 int     is_max(t_stack *s, int n);
 void    swap_b(t_stack *s);
 void    sort_5n(t_stack *a, t_stack *b);
+void    sort_4n(t_stack *a, t_stack *b);
+void    print_stack(char *action, t_stack *s);
+void    mini_sort(t_stack *a, t_stack *b, int ac);
 
 
 #endif

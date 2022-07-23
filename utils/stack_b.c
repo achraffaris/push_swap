@@ -10,32 +10,41 @@ void    swap_b(t_stack *s)
     a = s->top;
     b = a->next;
     ft_swap(&a->content, &b->content);
+    write(1, "sb\n", 3);
 }
 
 void    push_b(t_stack *a, t_stack *b)
 {
     // move stack_a top_node to be the top_node of stack_b
-    t_node *top_node;
-    if (!b->top && !b->tail)
+    t_node *sender_head;
+    t_node *receiver_head;
+
+    if (b->top)
     {
-        top_node = b->top;
-        if (b->top->next)
-            b->top = top_node->next;
-        else
+        sender_head = b->top;
+        if (!sender_head->next)
         {
             b->top = NULL;
             b->tail = NULL;
         }
+        else
+            b->top = sender_head->next;
         if (a->top)
-            top_node->next = a->top;
-        a->top = top_node;
-        // is stack is empty
-        if (!a->tail)
         {
-            a->top->next = NULL;
-            a->tail = a->top;
+            receiver_head = a->top;
+            a->top = sender_head;
+            sender_head->next = receiver_head;
+            receiver_head->previous = sender_head;
+        }
+        else
+        {
+            sender_head->next = NULL;
+            sender_head->previous = NULL;
+            a->top = sender_head;
+            a->tail = sender_head;
         }
     }
+    write(1, "pb\n", 3);
 }
 
 void    rotate_b(t_stack *s)
@@ -53,6 +62,7 @@ void    rotate_b(t_stack *s)
     s->tail->next = old_top;
     old_top->next = NULL;
     s->tail = old_top;
+    write(1, "rb\n", 3);
 }
 
 void    rev_rotate_b(t_stack *s)
@@ -82,5 +92,6 @@ void    rev_rotate_b(t_stack *s)
     and the tail will be previous tail node,
     so previous_tail_node should be found
     and assign its next pointer to NULL,
-    */ 
+    */
+   write(1, "rrb\n", 4);
 }
