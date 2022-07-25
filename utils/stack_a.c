@@ -15,35 +15,11 @@ void    swap_a(t_stack *s)
 
 void    push_a(t_stack *a, t_stack *b)
 {
-    // move stack_a top_node to be the top_node of stack_b
-    t_node *sender_head;
-    t_node *receiver_head;
+    t_node *top_node;
 
-    if (a->top)
-    {
-        sender_head = a->top;
-        if (!sender_head->next)
-        {
-            a->top = NULL;
-            a->tail = NULL;
-        }
-        else
-            a->top = sender_head->next;
-        if (b->top)
-        {
-            receiver_head = b->top;
-            b->top = sender_head;
-            sender_head->next = receiver_head;
-            receiver_head->previous = sender_head;
-        }
-        else
-        {
-            sender_head->next = NULL;
-            sender_head->previous = NULL;
-            b->top = sender_head;
-            b->tail = sender_head;
-        }
-    }
+    top_node = extract_node(a);
+    if (top_node)
+        insert_node(b, top_node);
     write(1, "pa\n", 3);
 }
 

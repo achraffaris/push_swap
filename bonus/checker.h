@@ -1,7 +1,15 @@
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 # define INT_MAX 2147483647
 # define INT_MIN 2147483648
+# define SA "sa\n"
+# define SB "sb\n"
+# define RA "ra\n"
+# define RB "rb\n"
+# define RRA "rra\n"
+# define RRB "rrb\n"
+# define SS "ss\n"
+# define RRR "rrr\n"
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -36,7 +44,7 @@ void    push_b(t_stack *a, t_stack *b);
 int     args_duplicated(char **av, int ac);
 int     is_sorted(t_stack *s);
 int     ft_strlen(char *str);
-int     ft_strcmp(char *s1, char *s2);
+int     ft_strcmp(const char *s1, const char *s2);
 void    sort_3n(t_stack *s);
 int     is_min(t_stack *s, int n);
 int     is_max(t_stack *s, int n);
@@ -45,8 +53,7 @@ void    sort_5n(t_stack *a, t_stack *b);
 void    sort_4n(t_stack *a, t_stack *b);
 void    print_stack(char *action, t_stack *s);
 void    mini_sort(t_stack *a, t_stack *b, int ac);
-void    insert_node(t_stack *s, t_node *new_node);
-t_node  *extract_node(t_stack *s);
+char	*get_next_line(int fd);
 void    swap_ab(t_stack *a, t_stack *b);
 void    rotate_ab(t_stack *a, t_stack *b);
 void    rev_rotate_ab(t_stack *a, t_stack *b);

@@ -13,9 +13,21 @@ SRCS = 	push_swap.c \
 		utils/stack_b.c \
 		utils/checker.c \
 		utils/mini_sort.c \
-		utils/comp.c
+		utils/comp.c \
+		utils/stack_ab.c
 
-BSRCS = checker.c
+BSRCS = bonus/checker.c \
+		bonus/stack_a_bonus.c \
+		bonus/stack_b_bonus.c \
+		utils/common.c \
+		utils/ft_atoi.c \
+		utils/ft_errors.c \
+		utils/checker.c \
+		utils/mini_sort.c \
+		utils/comp.c \
+		utils/get_next_line/get_next_line_utils.c \
+		utils/get_next_line/get_next_line.c \
+		utils/stack_ab.c
 		
 BOBJS = $(BSRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)

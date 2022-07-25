@@ -1,8 +1,5 @@
-#include "push_swap.h"
+#include "checker.h"
 
-// ./ps 2 5 0 1 
-
-// each node has a unique content, and a pointer to his following node.
 void    get_nodes(int ac, char **av, t_stack *s)
 {
     int     i;
@@ -43,7 +40,6 @@ t_stack *get_clean_data(int ac, char **av)
         raise_error();
     */
     return (s);
-
 }
 
 void    print_stack(char *action, t_stack *s)
@@ -59,6 +55,40 @@ void    print_stack(char *action, t_stack *s)
     }
 }
 
+void    exec_actions(t_stack *a, t_stack *b, char *action)
+{
+    if (ft_strcmp(action, SA) == 0)
+        swap_a(a);
+    else if (ft_strcmp(action, SB) == 0)
+        swap_b(b);
+    else if (ft_strcmp(action, RA) == 0)
+        rotate_a(a);
+    else if (ft_strcmp(action, RB) == 0)
+        rotate_b(b);
+    else if (ft_strcmp(action, RRA) == 0)
+        rev_rotate_a(a);
+    else if (ft_strcmp(action, RRB) == 0)
+        rev_rotate_b(b);
+    else
+        raise_error();
+}
+
+void    actions_listener(t_stack *a, t_stack *b)
+{
+    char *buff;
+
+    buff = get_next_line(0);
+    while (buff)
+    {
+        exec_actions(a, b, buff);
+        buff = get_next_line(0);
+    }
+    if (is_sorted(a) && (!b->top))
+        write(1, "OK\n", 3);
+    else
+        write(1, "KO\n", 3);
+}
+
 int main(int ac, char **av)
 {
     t_stack *a;
@@ -68,7 +98,5 @@ int main(int ac, char **av)
     b = malloc(sizeof(t_stack));
     b->top =NULL;
     b->tail= NULL;
-    print_stack("stack a", a);
-    mini_sort(a, b, ac);
-    print_stack("minisort", a);
+    actions_listener(a, b);
 }
