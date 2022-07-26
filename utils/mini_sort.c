@@ -21,58 +21,58 @@ void    sort_3n(t_stack *s)
         if (is_max(s, s->top->content))
         {
             if (is_min(s, s->top->next->content))
-                rotate_a(s);
+                rotate_a(s, FALSE);
             else
             {
-                rotate_a(s);
-                swap_a(s);
+                rotate_a(s, FALSE);
+                swap_a(s, FALSE);
             }
         }
         else if (is_min(s, s->top->content))
         {
-            rev_rotate_a(s);
-            swap_a(s);
+            rev_rotate_a(s, FALSE);
+            swap_a(s, FALSE);
         }
         else
-            swap_a(s);
+            swap_a(s, FALSE);
     }
 }
 
 void    sort_4n(t_stack *a, t_stack *b)
 {
     if (is_min(a, a->top->next->content))
-        swap_a(a);
+        swap_a(a, FALSE);
     else if (is_min(a, a->tail->content))
-        rev_rotate_a(a);
+        rev_rotate_a(a, FALSE);
     else if (is_min(a, a->tail->previous->content))
     {
-        rev_rotate_a(a);
-        rev_rotate_a(a);
+        rev_rotate_a(a, FALSE);
+        rev_rotate_a(a, FALSE);
     }
-    push_a(a, b);
+    push_a(a, b, FALSE);
     sort_3n(a);
-    push_b(a, b);
+    push_b(a, b, FALSE);
 }
 
 void    sort_5n(t_stack *a, t_stack *b)
 {
     if (is_min(a, a->top->next->content))
-        swap_a(a);
+        swap_a(a, FALSE);
     else if (is_min(a, a->tail->content))
-        rev_rotate_a(a);
+        rev_rotate_a(a, FALSE);
     else if (is_min(a, a->top->next->next->content))
     {
-        rotate_a(a);
-        rotate_a(a);
+        rotate_a(a, FALSE);
+        rotate_a(a, FALSE);
     }
     else if (is_min(a, a->tail->previous->content))
     {
-        rev_rotate_a(a);
-        rev_rotate_a(a);
+        rev_rotate_a(a, FALSE);
+        rev_rotate_a(a, FALSE);
     }
-    push_a(a, b);
+    push_a(a, b, FALSE);
     sort_4n(a, b);
-    push_b(a, b);
+    push_b(a, b, FALSE);
 }
 
 void    mini_sort(t_stack *a, t_stack *b, int ac)

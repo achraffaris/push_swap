@@ -39,23 +39,26 @@ void    insert_node(t_stack *s, t_node *new_node)
     }
 }
 
-void    swap_ab(t_stack *a, t_stack *b)
+void    swap_ab(t_stack *a, t_stack *b, int muted)
 {
-    swap_a(a);
-    swap_b(b);
-    write(1, "ss\n", 3);
+    swap_a(a, muted);
+    swap_b(b, muted);
+    if (!muted)
+        write(1, "ss\n", 3);
 }
 
-void    rotate_ab(t_stack *a, t_stack *b)
+void    rotate_ab(t_stack *a, t_stack *b, int muted)
 {
-    rotate_a(a);
-    rotate_b(b);
-    write(1, "rr\n", 3);
+    rotate_a(a, muted);
+    rotate_b(b, muted);
+    if (!muted)
+        write(1, "rr\n", 3);
 }
 
-void    rev_rotate_ab(t_stack *a, t_stack *b)
+void    rev_rotate_ab(t_stack *a, t_stack *b, int muted)
 {
-    rev_rotate_a(a);
-    rev_rotate_b(b);
-    write(1, "rrr\n", 3);
+    rev_rotate_a(a, muted);
+    rev_rotate_b(b, muted);
+    if (!muted)
+        write(1, "rrr\n", 3);
 }

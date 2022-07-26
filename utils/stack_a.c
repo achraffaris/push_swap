@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-void    swap_a(t_stack *s)
+void    swap_a(t_stack *s, int muted)
 {
     t_node *a;
     t_node *b;
@@ -10,20 +10,22 @@ void    swap_a(t_stack *s)
     a = s->top;
     b = a->next;
     ft_swap(&a->content, &b->content);
-    write(1, "sa\n", 3);
+    if (!muted)
+        write(1, "sa\n", 3);
 }
 
-void    push_a(t_stack *a, t_stack *b)
+void    push_a(t_stack *a, t_stack *b, int muted)
 {
     t_node *top_node;
 
     top_node = extract_node(a);
     if (top_node)
         insert_node(b, top_node);
-    write(1, "pa\n", 3);
+    if (!muted)
+        write(1, "pa\n", 3);
 }
 
-void    rotate_a(t_stack *s)
+void    rotate_a(t_stack *s, int muted)
 {
     // point the top to the next following node.
     // the old top will be the tail
@@ -38,10 +40,11 @@ void    rotate_a(t_stack *s)
     s->tail->next = old_top;
     old_top->next = NULL;
     s->tail = old_top;
-    write(1, "ra\n", 3);
+    if (!muted)
+        write(1, "ra\n", 3);
 }
 
-void    rev_rotate_a(t_stack *s)
+void    rev_rotate_a(t_stack *s, int muted)
 {
     t_node *prev_tail_node;
     t_node *current;
@@ -69,5 +72,6 @@ void    rev_rotate_a(t_stack *s)
     so previous_tail_node should be found
     and assign its next pointer to NULL,
     */
-   write(1, "rra\n", 4);
+    if (!muted)
+        write(1, "rra\n", 4);
 }
