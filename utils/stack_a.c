@@ -20,7 +20,11 @@ void    push_a(t_stack *a, t_stack *b, int muted)
 
     top_node = extract_node(a);
     if (top_node)
+    {
         insert_node(b, top_node);
+        b->stack_size++;
+        a->stack_size--;
+    }
     if (!muted)
         write(1, "pa\n", 3);
 }

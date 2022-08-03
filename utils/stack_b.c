@@ -20,7 +20,11 @@ void    push_b(t_stack *a, t_stack *b, int muted)
 
     top_node = extract_node(b);
     if (top_node)
+    {
         insert_node(a, top_node);
+        a->stack_size++;
+        b->stack_size--;
+    }
     if (!muted)
         write(1, "pb\n", 3);
 }
@@ -35,11 +39,14 @@ void    rotate_b(t_stack *s, int muted)
     // assign the tail to the old_top
 
     t_node *old_top;
-    old_top = s->top;
-    s->top = s->top->next;
-    s->tail->next = old_top;
-    old_top->next = NULL;
-    s->tail = old_top;
+    if (s->top->next)
+    {
+        old_top = s->top;
+        s->top = s->top->next;
+        s->tail->next = old_top;
+        old_top->next = NULL;
+        s->tail = old_top;
+    }
     if (!muted)
         write(1, "rb\n", 3);
 }
