@@ -72,6 +72,8 @@ int main(int ac, char **av)
             tail_space++;
         }
     }
+    print_stack("stack_a", a);
+    print_stack("stack_b", b);
     if (is_sorted(a))
         printf("\033[32m Sorted successfully!!\n");
     else

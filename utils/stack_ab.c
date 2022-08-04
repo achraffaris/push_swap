@@ -60,5 +60,5 @@ void    rev_rotate_ab(t_stack *a, t_stack *b, int muted)
     rev_rotate_a(a, muted);
     rev_rotate_b(b, muted);
     if (!muted)
-        write(1, "rrr\n", 3);
+        write(1, "rrr\n", 4);
 }

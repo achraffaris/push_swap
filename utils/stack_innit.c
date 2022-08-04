@@ -76,7 +76,7 @@ t_stack *stack_a_init(int ac, char **av)
     s->ref_size = s->stack_size;
     s->ref_arr = get_stack_ref(ac, av);
     if (is_sorted(s))
-        raise_error();
+        exit(EXIT_FAILURE);
     if (s->stack_size <= 10)
         s->n = 5;
     else if (s->stack_size > 10 && s->stack_size <= 150)
