@@ -39,7 +39,7 @@ void    rotate_b(t_stack *s, int muted)
     // assign the tail to the old_top
 
     t_node *old_top;
-    if (s->top->next)
+    if (s->top && s->top->next)
     {
         old_top = s->top;
         s->top = s->top->next;
@@ -64,9 +64,9 @@ void    rev_rotate_b(t_stack *s, int muted)
     while (current)
     {
         prev_tail_node = current;
-        current = current->next;
-        if (current->next == NULL)
+        if (current && (!current->next))
             break ;
+        current = current->next;
     }
     s->tail->next = s->top;
     s->top = s->tail;

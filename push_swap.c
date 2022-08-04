@@ -19,13 +19,23 @@ void    print_stack(char *action, t_stack *s)
     }
 }
 
+int antecedant_exists(t_stack *s, int start, int end)
+{
+    t_node *current;
+
+    current = s->top;
+    while (current)
+    {
+        if (current->content > start && current->content <= end)
+            return (TRUE);
+        current = current->next;
+    }
+    return (FALSE);
+}
 int main(int ac, char **av)
 {
     t_stack *a;
     t_stack *b;
-    int tmp;
-    int n;
-    n = 0;
     int tail_space;
 
     tail_space = 0;
@@ -39,35 +49,22 @@ int main(int ac, char **av)
         chunk_sort(a, b);
     while (b->top)
     {
+        if (tail_space && (!antecedant_exists(b, b->tail->content, a->top->content)) && a->top)
+        {
+            tail_space--;
+            rev_rotate_b(b, FALSE);
+            push_b(a, b, FALSE);
+        }
         if ((b->top && b->top->next && b->top->content > b->top->next->content) || b->stack_size == 1)
         {
-            if (tail_space > 0)
+            if (tail_space && b->tail->content > b->top->content && b->stack_size > 1)
             {
-                if (b->tail->content > b->top->content && b->stack_size > 1)
-                {
-                    rev_rotate_b(b, FALSE);
-                    tail_space--;
-                }
+                rev_rotate_b(b, FALSE);
+                tail_space--;
             }
             push_b(a, b, FALSE);
             if (a->top->content > a->tail->content)
                 rotate_a(a, FALSE);
-            if (a->top && a->top->next && a->top->content > a->top->next->content)
-            {
-                tmp = a->top->content;
-                push_a(a, b, FALSE);
-                while (tmp > a->top->content)
-                {
-                    rotate_a(a, FALSE);
-                    n++;
-                }
-                push_b(a, b, FALSE);
-                while (n > 0)
-                {
-                    rev_rotate_a(a, FALSE);
-                    n--;
-                }
-            }
         }
         else
         {
@@ -75,7 +72,6 @@ int main(int ac, char **av)
             tail_space++;
         }
     }
-    print_stack("stack a", a);
     if (is_sorted(a))
         printf("\033[32m Sorted successfully!!\n");
     else

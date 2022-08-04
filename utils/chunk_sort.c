@@ -1,16 +1,12 @@
 #include "../push_swap.h"
 
-
-
 void    stack_a_migration(t_stack *a, t_stack *b)
 {
     int i;
     while (a->top)
-    {   
-        
+    {
         i = 0;
         // overflow estimations
-        
         a->transfers = (a->ref_end - a->ref_start + 1) - b->stack_size;
         while (i < a->transfers)
         {
