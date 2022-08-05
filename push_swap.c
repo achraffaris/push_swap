@@ -32,13 +32,28 @@ int antecedant_exists(t_stack *s, int start, int end)
     }
     return (FALSE);
 }
+
+int is_max_bs(int bs, t_stack *s)
+{
+    t_node *current;
+
+    current = s->tail;
+    while (bs)
+    {
+        if (current->content > s->top->content)
+            return (FALSE);
+        bs--;
+    }
+    return (TRUE);
+}
+
 int main(int ac, char **av)
 {
     t_stack *a;
     t_stack *b;
-    int tail_space;
+    int bs;
 
-    tail_space = 0;
+    bs = 0;
     if (ac <= 1)
         exit(0);
     a = stack_a_init(ac, av);
@@ -47,33 +62,36 @@ int main(int ac, char **av)
         mini_sort(a, b, ac);
     else
         chunk_sort(a, b);
-    while (b->top)
+    while (b->top || bs)
     {
-        if (tail_space && (!antecedant_exists(b, b->tail->content, a->top->content)) && a->top)
-        {
-            tail_space--;
-            rev_rotate_b(b, FALSE);
+        if (is_max(b, b->top->content))
             push_b(a, b, FALSE);
+        while (bs && )
+        {
+            rev_rotate_a(a, FALSE);
+            if (a->top && a->top->next && a->top->content > a->top->next->content)
+                swap_a(a, FALSE);
+            bs--;
         }
-        if ((b->top && b->top->next && b->top->content > b->top->next->content) || b->stack_size == 1)
+        if (!bs && b->top && a->tail && b->top->content > a->tail->content)
         {
-            if (tail_space && b->tail->content > b->top->content && b->stack_size > 1)
-            {
-                rev_rotate_b(b, FALSE);
-                tail_space--;
-            }
             push_b(a, b, FALSE);
-            if (a->top->content > a->tail->content)
-                rotate_a(a, FALSE);
+            rotate_a(a, FALSE);
         }
         else
         {
-            rotate_b(b, FALSE);
-            tail_space++;
+            while (b->top && (!is_max(b, b->top->content)))
+            {
+                push_b(a, b, FALSE);
+                if (a->top && a->top->next && a->top->content > a->top->next->content)
+                    swap_a(a, FALSE);
+                rotate_a(a, FALSE);
+                
+                bs++;
+            }
         }
     }
     print_stack("stack_a", a);
-    print_stack("stack_b", b);
     if (is_sorted(a))
         printf("\033[32m Sorted successfully!!\n");
     else
