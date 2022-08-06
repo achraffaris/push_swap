@@ -4,10 +4,12 @@
 # define INT_MIN 2147483648
 # define FALSE 0
 # define TRUE 1
-
+# define STACK_A 'a'
+# define STACK_B 'b'
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <fcntl.h>
 
 typedef struct node
 {
@@ -55,7 +57,6 @@ int                 is_max(t_stack *s, int n);
 void                swap_b(t_stack *s, int muted);
 void                sort_5n(t_stack *a, t_stack *b);
 void                sort_4n(t_stack *a, t_stack *b);
-void                print_stack(char *action, t_stack *s);
 void                mini_sort(t_stack *a, t_stack *b, int ac);
 void                insert_node(t_stack *s, t_node *new_node);
 t_node              *extract_node(t_stack *s);
@@ -66,5 +67,7 @@ t_stack             *stack_a_init(int ac, char **av);
 t_stack             *stack_b_init();
 int                 exists(int *ref_arr, int node_id, int start, int end);
 void                chunk_sort(t_stack *a, t_stack *b);
+char                max_found_in(t_stack *a, t_stack *b, int bs);
+int                 is_max_bs(t_stack *s, int bs, int nb);
 
 #endif

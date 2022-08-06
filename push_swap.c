@@ -5,13 +5,12 @@
 // need to be optimized
 
 
-void    print_stack(char *action, t_stack *s)
+void    print_stack(t_stack *s, int fd)
 {
     t_node *head;
 
     head = s->top;
-    printf("----- %s -----\n", action);
-    printf("    [id]    [content]\n");
+    fd++;
     while (head)
     {
         printf("     [%d]      [%d]\n", head->id, head->content);
@@ -33,26 +32,14 @@ int antecedant_exists(t_stack *s, int start, int end)
     return (FALSE);
 }
 
-int is_max_bs(int bs, t_stack *s)
-{
-    t_node *current;
-
-    current = s->tail;
-    while (bs)
-    {
-        if (current->content > s->top->content)
-            return (FALSE);
-        bs--;
-    }
-    return (TRUE);
-}
 
 int main(int ac, char **av)
 {
     t_stack *a;
     t_stack *b;
     int bs;
-
+    int stack_b = open("stack_b", O_RDWR, O_APPEND);
+    stack_b++;
     bs = 0;
     if (ac <= 1)
         exit(0);
@@ -64,34 +51,49 @@ int main(int ac, char **av)
         chunk_sort(a, b);
     while (b->top || bs)
     {
-        if (is_max(b, b->top->content))
-            push_b(a, b, FALSE);
-        while (bs && )
+        if (a->top && a->top->next && a->top->content > a->top->next->content)
         {
-            rev_rotate_a(a, FALSE);
-            if (a->top && a->top->next && a->top->content > a->top->next->content)
-                swap_a(a, FALSE);
-            bs--;
-        }
-        if (!bs && b->top && a->tail && b->top->content > a->tail->content)
-        {
-            push_b(a, b, FALSE);
+            int n, tmp = 0;
+            tmp = a->top->content;
             rotate_a(a, FALSE);
-        }
-        else
-        {
-            while (b->top && (!is_max(b, b->top->content)))
+            while (tmp > a->top->content)
+            {
+                push_a(a, b, FALSE);
+                n++;
+            }
+            rev_rotate_a(a, FALSE);
+            while (n)
             {
                 push_b(a, b, FALSE);
                 if (a->top && a->top->next && a->top->content > a->top->next->content)
                     swap_a(a, FALSE);
+                n--;
+            }
+        }
+        if (max_found_in(a, b, bs) == STACK_B)
+        {
+            if (is_max(b, b->top->content))
+                push_b(a, b, FALSE);
+            else
+            {
+                push_b(a, b, FALSE);
                 rotate_a(a, FALSE);
-                
                 bs++;
             }
         }
+        else
+        {
+            while (bs)
+            {
+                rev_rotate_a(a, FALSE);
+                bs--;
+                if (is_max_bs(a, bs, a->top->content))
+                    break ;
+                else
+                    push_a(a, b, FALSE);
+            }
+        }
     }
-    print_stack("stack_a", a);
     if (is_sorted(a))
         printf("\033[32m Sorted successfully!!\n");
     else

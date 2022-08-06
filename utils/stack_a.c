@@ -7,11 +7,15 @@ void    swap_a(t_stack *s, int muted)
 
     // a point to the head of the linked nodes.
     // b point to the next node of a, so b is the antecedant of a.
-    a = s->top;
-    b = a->next;
-    ft_swap(&a->content, &b->content);
-    if (!muted)
-        write(1, "sa\n", 3);
+    if (s->top && s->top->next)
+    {
+        a = s->top;
+        b = a->next;
+    
+        ft_swap(&a->content, &b->content);
+        if (!muted)
+            write(1, "sa\n", 3);
+    }
 }
 
 void    push_a(t_stack *a, t_stack *b, int muted)
@@ -43,6 +47,7 @@ void    rotate_a(t_stack *s, int muted)
     s->top = s->top->next;
     s->tail->next = old_top;
     old_top->next = NULL;
+    old_top->previous = s->tail;
     s->tail = old_top;
     if (!muted)
         write(1, "ra\n", 3);
