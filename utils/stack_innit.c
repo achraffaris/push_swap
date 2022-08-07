@@ -96,6 +96,7 @@ t_stack *stack_a_init(int ac, char **av)
     s->ref_middle = (s->ref_size / 2) - 1;
     s->ref_start = s->ref_middle - s->offset;
     s->ref_end = s->ref_middle + s->offset;
+    s->bs = 0;
     return (s);
 }
 
@@ -109,5 +110,6 @@ t_stack *empty_stack_init()
     s->tail = NULL;
     s->top = NULL;
     s->stack_size = 0;
+    s->bs = 0;
     return (s);
 }

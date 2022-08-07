@@ -32,6 +32,24 @@ int antecedant_exists(t_stack *s, int start, int end)
     return (FALSE);
 }
 
+int max_found_in_bs(t_stack *s)
+{
+    int bs;
+    t_node *current;
+
+    current = s->tail;
+    if (!s->bs)
+        return (FALSE);
+    bs = s->bs;
+    while (bs)
+    {
+        if (is_max(s, current->content))
+            return (TRUE);
+        current = current->previous;
+        bs--;
+    }
+    return (FALSE);
+}
 
 int main(int ac, char **av)
 {
@@ -49,45 +67,44 @@ int main(int ac, char **av)
         mini_sort(a, b, ac);
     else
         chunk_sort(a, b);
-    
-    while (b->top || bs)
+    print_stack(b, 4);
+    while (b->top || a->bs)
     {
-        if (a->top && a->top->next && a->top->content > a->top->next->content)
+        if (max_found_in(a, b, a->bs) == STACK_B)
         {
-            int n  = 0, tmp = 0;
-            tmp = a->top->content;
-            rotate_a(a, FALSE);
-            while (tmp > a->top->content)
+            if (max_found_in_bs(b))
             {
-                push_b(a, b, FALSE);
-                n++;
+                while (b->bs)
+                {
+                    rev_rotate_b(b, FALSE);
+                    b->bs--;
+                    if (is_max(b, b->top->content))
+                        break ;
+                }
             }
-            rev_rotate_a(a, FALSE);
-            while (n)
-            {
-                push_a(a, b, FALSE);
-                if (a->top && a->top->next && a->top->content > a->top->next->content)
-                    swap_a(a, FALSE);
-                n--;
-            }
-        }
-        if (max_found_in(a, b, bs) == STACK_B)
-        {
             if (is_max(b, b->top->content))
                 push_a(a, b, FALSE);
             else
             {
-                push_a(a, b, FALSE);
-                rotate_a(a, FALSE);
-                bs++;
+                if (a->bs || b->top->content > a->tail->content)
+                {
+                    push_a(a, b, FALSE);
+                    rotate_a(a, FALSE);
+                    a->bs++;
+                }
+                else if (b->top->content < a->tail->content)
+                {
+                    rotate_b(b, FALSE);
+                    b->bs++;
+                }
             }
         }
         else
         {
-            while (bs)
+            while (a->bs)
             {
                 rev_rotate_a(a, FALSE);
-                bs--;
+                a->bs--;
                 if (is_max_bs(a, bs, a->top->content))
                     break ;
                 else
@@ -95,4 +112,8 @@ int main(int ac, char **av)
             }
         }
     }
+    if (is_sorted(a))
+        printf("\033[32m Sorted successfully!!\n");
+    else
+        printf("\033[31m NOT sorted!!\n");
 }

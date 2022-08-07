@@ -33,6 +33,7 @@ typedef struct stack
     int             ref_middle;
     int             ref_start;
     int             ref_end;
+    int             bs;
 }   t_stack;
 
 void                raise_error();
