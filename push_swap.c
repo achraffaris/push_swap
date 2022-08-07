@@ -45,7 +45,6 @@ int main(int ac, char **av)
         exit(0);
     a = stack_a_init(ac, av);
     b = stack_b_init();
-    print_stack(a, 4);
     if (ac <= 6)
         mini_sort(a, b, ac);
     else
@@ -60,13 +59,13 @@ int main(int ac, char **av)
             rotate_a(a, FALSE);
             while (tmp > a->top->content)
             {
-                push_a(a, b, FALSE);
+                push_b(a, b, FALSE);
                 n++;
             }
             rev_rotate_a(a, FALSE);
             while (n)
             {
-                push_b(a, b, FALSE);
+                push_a(a, b, FALSE);
                 if (a->top && a->top->next && a->top->content > a->top->next->content)
                     swap_a(a, FALSE);
                 n--;
@@ -75,10 +74,10 @@ int main(int ac, char **av)
         if (max_found_in(a, b, bs) == STACK_B)
         {
             if (is_max(b, b->top->content))
-                push_b(a, b, FALSE);
+                push_a(a, b, FALSE);
             else
             {
-                push_b(a, b, FALSE);
+                push_a(a, b, FALSE);
                 rotate_a(a, FALSE);
                 bs++;
             }
@@ -92,13 +91,13 @@ int main(int ac, char **av)
                 if (is_max_bs(a, bs, a->top->content))
                     break ;
                 else
-                    push_a(a, b, FALSE);
+                    push_b(a, b, FALSE);
             }
         }
     }
-    print_stack(a, 5);
-    if (is_sorted(a))
-        printf("\033[32m Sorted successfully!!\n");
-    else
-        printf("\033[31m NOT sorted!!\n");
+    // print_stack(a, 5);
+    // if (is_sorted(a))
+    //     printf("\033[32m Sorted successfully!!\n");
+    // else
+    //     printf("\033[31m NOT sorted!!\n");
 }

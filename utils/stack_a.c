@@ -33,7 +33,6 @@ void    push_a(t_stack *a, t_stack *b, int muted)
         if (!muted)
             write(1, "pa\n", 3);
     }
-    
 }
 
 void    rotate_a(t_stack *s, int muted)
