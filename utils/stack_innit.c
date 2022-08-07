@@ -5,15 +5,15 @@ void    sort_stack_ref(t_stack *s)
     int i;
 
     i = 0;
-    t_node *min;
+    t_stack *trash;
 
+    trash = empty_stack_init();
     while (s->top)
     {
         if (is_min(s, s->top->content))
         {
-            min = extract_node(s);
-            s->ref_arr[i] = min->id;
-            free(min);
+            s->ref_arr[i] = s->top->id;
+            transfer_top(s, trash);
             i++;
         }
         else
@@ -91,7 +91,7 @@ t_stack *stack_a_init(int ac, char **av)
     else if (s->stack_size > 10 && s->stack_size <= 150)
         s->n = 8;
     else
-        s->n = 18;
+        s->n = 11;
     s->offset = s->stack_size / s->n;
     s->ref_middle = (s->ref_size / 2) - 1;
     s->ref_start = s->ref_middle - s->offset;
@@ -99,7 +99,7 @@ t_stack *stack_a_init(int ac, char **av)
     return (s);
 }
 
-t_stack *stack_b_init()
+t_stack *empty_stack_init()
 {
     t_stack *s;
 

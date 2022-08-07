@@ -22,14 +22,9 @@ void    swap_b(t_stack *s, int muted)
 
 void    push_b(t_stack *a, t_stack *b, int muted)
 {
-    t_node *top_node;
-
-    top_node = extract_node(a);
-    if (top_node)
+    if (a->top)
     {
-        insert_node(b, top_node);
-        b->stack_size++;
-        a->stack_size--;
+        transfer_top(a, b);
         if (!muted)
             write(1, "pb\n", 3);
     }

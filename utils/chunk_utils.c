@@ -32,7 +32,7 @@ char max_found_in(t_stack *a, t_stack *b, int bs)
         return (STACK_B);
     current = a->tail;
     max_a = current;
-    while (bs && current->previous)
+    while (bs && max_a && current->previous)
     {
         if (max_a && current && current->previous && max_a->content < current->previous->content && bs - 1 > 0)
         {
@@ -42,7 +42,7 @@ char max_found_in(t_stack *a, t_stack *b, int bs)
         current = current->previous;
         bs--;
     }
-    if (!max_b || max_a->content > max_b->content)
+    if (!max_b || (max_a && max_a->content > max_b->content))
         return (STACK_A);
     else
         return (STACK_B);

@@ -44,7 +44,7 @@ int main(int ac, char **av)
     if (ac <= 1)
         exit(0);
     a = stack_a_init(ac, av);
-    b = stack_b_init();
+    b = empty_stack_init();
     if (ac <= 6)
         mini_sort(a, b, ac);
     else
@@ -95,9 +95,4 @@ int main(int ac, char **av)
             }
         }
     }
-    // print_stack(a, 5);
-    // if (is_sorted(a))
-    //     printf("\033[32m Sorted successfully!!\n");
-    // else
-    //     printf("\033[31m NOT sorted!!\n");
 }

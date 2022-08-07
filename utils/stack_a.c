@@ -22,14 +22,9 @@ void    swap_a(t_stack *s, int muted)
 
 void    push_a(t_stack *a, t_stack *b, int muted)
 {
-    t_node *top_node;
-
-    top_node = extract_node(b);
-    if (top_node)
+    if (b->top)
     {
-        insert_node(a, top_node);
-        a->stack_size++;
-        b->stack_size--;
+        transfer_top(b, a);
         if (!muted)
             write(1, "pa\n", 3);
     }
@@ -47,7 +42,8 @@ void    rotate_a(t_stack *s, int muted)
         s->top = old_top->next;
         s->top->previous = NULL;
         old_top->next = NULL;
-        old_tail->next = old_top;
+        if (old_tail)
+            old_tail->next = old_top;
         old_top->previous = old_tail;
         s->tail = old_top;
         if (!muted)
@@ -60,7 +56,7 @@ void    rev_rotate_a(t_stack *s, int muted)
     t_node *old_top;
     t_node *tail_previous;
 
-    if (s->top && s->top->next)
+    if (s->tail && s->top)
     {
         old_top = s->top;
         tail_previous = s->tail->previous;
@@ -68,7 +64,8 @@ void    rev_rotate_a(t_stack *s, int muted)
         s->top->next = old_top;
         s->top->previous = NULL;
         s->tail = tail_previous;
-        s->tail->next = NULL;
+        if (s->tail)
+            s->tail->next = NULL;
         if (!muted)
             write(1, "rra\n", 4);
     }
