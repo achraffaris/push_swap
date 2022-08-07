@@ -31,21 +31,30 @@ void    create_nodes(int ac, char **av, t_stack *s)
     current = malloc(sizeof(t_node));
     previous = NULL;
     s->top = current;
+    ac--;
+    int j = ac;
     while (av[i])
     {
-        current->id = i;
-        current->previous = previous;
+        current->id = ac;
         current->content = ft_atoi(av[i]);
-        if (i == ac - 1)
+        if (i == 1)
         {
-            s->tail = current;
-            current->next = NULL;
+            s->top = current;
+            s->top->previous = NULL;
         }
         else
-            current->next = malloc(sizeof(t_node));
+            current->previous = previous;
+        if (i == j)
+        {
+            current->next = NULL;
+            s->tail = current;
+        }
+        else
+            current->next = malloc(sizeof(t_node));   
         previous = current;
         current = current->next;
         i++;
+        ac--;
     }
 }
 

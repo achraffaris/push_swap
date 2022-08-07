@@ -45,10 +45,12 @@ int main(int ac, char **av)
         exit(0);
     a = stack_a_init(ac, av);
     b = stack_b_init();
+    print_stack(a, 4);
     if (ac <= 6)
         mini_sort(a, b, ac);
     else
         chunk_sort(a, b);
+    
     while (b->top || bs)
     {
         if (a->top && a->top->next && a->top->content > a->top->next->content)
@@ -94,9 +96,9 @@ int main(int ac, char **av)
             }
         }
     }
+    print_stack(a, 5);
     if (is_sorted(a))
         printf("\033[32m Sorted successfully!!\n");
     else
         printf("\033[31m NOT sorted!!\n");
-    
 }
