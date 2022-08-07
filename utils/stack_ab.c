@@ -41,24 +41,24 @@ void    insert_node(t_stack *s, t_node *new_node)
 
 void    swap_ab(t_stack *a, t_stack *b, int muted)
 {
-    swap_a(a, muted);
-    swap_b(b, muted);
+    swap_a(a, TRUE);
+    swap_b(b, TRUE);
     if (!muted)
         write(1, "ss\n", 3);
 }
 
 void    rotate_ab(t_stack *a, t_stack *b, int muted)
 {
-    rotate_a(a, muted);
-    rotate_b(b, muted);
+    rotate_a(a, TRUE);
+    rotate_b(b, TRUE);
     if (!muted)
         write(1, "rr\n", 3);
 }
 
 void    rev_rotate_ab(t_stack *a, t_stack *b, int muted)
 {
-    rev_rotate_a(a, muted);
-    rev_rotate_b(b, muted);
+    rev_rotate_a(a, TRUE);
+    rev_rotate_b(b, TRUE);
     if (!muted)
         write(1, "rrr\n", 4);
 }

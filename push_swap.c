@@ -53,7 +53,7 @@ int main(int ac, char **av)
     {
         if (a->top && a->top->next && a->top->content > a->top->next->content)
         {
-            int n, tmp = 0;
+            int n  = 0, tmp = 0;
             tmp = a->top->content;
             rotate_a(a, FALSE);
             while (tmp > a->top->content)
