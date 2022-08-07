@@ -67,7 +67,6 @@ int main(int ac, char **av)
         mini_sort(a, b, ac);
     else
         chunk_sort(a, b);
-    print_stack(b, 4);
     while (b->top || a->bs)
     {
         if (max_found_in(a, b, a->bs) == STACK_B)
