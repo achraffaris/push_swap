@@ -18,24 +18,34 @@ typedef struct node
     int             content;
     int             id;
     struct  node    *next;
-    struct  node    *previous;
 }   t_node;
+
+typedef struct reference
+{
+    int             *array;
+    int             size;
+    int             start;
+    int             end;
+    int             middle;
+}   t_reference;
+
+typedef struct bottom_space
+{
+    int             size;
+    t_node          *start;
+}   t_bottom_space;
 
 typedef struct stack
 {
-    int             size;
+    
     t_node          *top;
     t_node          *tail;
     int             n;
-    int             stack_size;
+    int             size;
     int             offset;
-    int             *ref_arr;
-    int             transfers;
-    int             ref_size;
-    int             ref_middle;
-    int             ref_start;
-    int             ref_end;
-    int             bs;
+    t_reference     *reference;
+    t_bottom_space  *bottom_space;
+    t_node          *nodes;
 }   t_stack;
 
 void                raise_error();
@@ -43,7 +53,6 @@ int                 ft_atoi(const char *nptr);
 int                 is_number(char c);
 int                 is_sign(char c);
 void                swap_a(t_stack *s, int muted);
-void                ft_swap(int *a, int *b);
 void                rotate_a(t_stack *s, int muted);
 void                rev_rotate_a(t_stack *s, int muted);
 void                push_a(t_stack *a, t_stack *b, int muted);
@@ -66,11 +75,13 @@ void                transfer_top(t_stack *from, t_stack *to);
 void                swap_ab(t_stack *a, t_stack *b, int muted);
 void                rotate_ab(t_stack *a, t_stack *b, int muted);
 void                rev_rotate_ab(t_stack *a, t_stack *b, int muted);
-t_stack             *stack_a_init(int ac, char **av);
-t_stack             *empty_stack_init();
-int                 exists(int *ref_arr, int node_id, int start, int end);
-void                chunk_sort(t_stack *a, t_stack *b);
-char                max_found_in(t_stack *a, t_stack *b, int bs);
-int                 is_max_bs(t_stack *s, int bs, int nb);
-int                 max_found_in_bs(t_stack *s);
+// int                 exists(int *ref_arr, int node_id, int start, int end);
+
+
+t_node              *get_node_previous(t_stack *s, t_node *node);
+t_stack             *empty_stack_creation();
+void                sort_reference_array(t_stack *copy, t_stack *s);
+void                nodes_creation(int ac, char **av, t_stack *s);
+void                reference_creation(int ac, char **av, t_stack *s);
+t_stack             *stack_a_creation(int ac, char **av);
 #endif

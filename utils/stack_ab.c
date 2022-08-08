@@ -8,39 +8,33 @@ void    insert_node(t_stack *s, t_node *new_node)
     if (s->top)
     {
         new_node->next = old_node;
-        old_node->previous = NULL;
         s->top = new_node;
     }
     else
     {
+        new_node->next = NULL;
         s->top = new_node;
         s->tail = new_node;
-        new_node->next = NULL;
     }
 }
 
 void    transfer_top(t_stack *from, t_stack *to)
 {
-    t_node *new_top;
+    t_node *top_next;
 
-    new_top = from->top->next;
-    if(from->top)
+    if (from->top)
     {
+        top_next = from->top->next;
         insert_node(to, from->top);
-        to->stack_size++;
-        from->stack_size--;
-        if (new_top)
-        {
-            from->top = new_top;
-            from->top->previous = NULL;
-        }
+        to->size++;
+        if (top_next)
+            from->top = top_next;
         else
         {
             from->tail = NULL;
             from->top = NULL;
         }
-        if (from->size == 1)
-            from->tail = from->top;
+        from->size--;
     }
 }
 
