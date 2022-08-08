@@ -111,8 +111,8 @@ int main(int ac, char **av)
             }
         }
     }
-    if (is_sorted(a))
-        printf("\033[32m Sorted successfully!!\n");
-    else
-        printf("\033[31m NOT sorted!!\n");
+    // if (is_sorted(a))
+    //     printf("\033[32m Sorted successfully!!\n");
+    // else
+    //     printf("\033[31m NOT sorted!!\n");
 }
