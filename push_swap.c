@@ -27,8 +27,8 @@ int main(int ac, char **av)
     b = empty_stack_creation();
     if (is_sorted(a))
         exit(EXIT_FAILURE);
-    // if (ac <= 6)
-    //     mini_sort(a, b, ac);
+    if (ac <= 6)
+        mini_sort(a, b, ac);
     // else
     //     chunk_sort(a, b);
     // if (is_sorted(a))
