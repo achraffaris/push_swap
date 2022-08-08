@@ -79,8 +79,17 @@ void    stack_b_migration(t_stack *a, t_stack *b)
                 if (a->bs || b->top->content > a->tail->content)
                 {
                     push_a(a, b, FALSE);
-                    rotate_a(a, FALSE);
-                    a->bs++;
+                    if (b->top->content < a->tail->content)
+                    {
+                        rotate_ab(a, b, FALSE);
+                        b->bs++;
+                        a->bs++;
+                    }
+                    else
+                    {
+                        rotate_a(a, FALSE);
+                        a->bs++;
+                    }
                 }
                 else if (b->top->content < a->tail->content)
                 {
