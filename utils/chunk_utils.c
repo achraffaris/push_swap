@@ -62,3 +62,23 @@ int is_max_bs(t_stack *s, int bs, int nb)
     }
     return (TRUE);
 }
+
+int max_found_in_bs(t_stack *s)
+{
+    int bs;
+    t_node *current;
+
+    current = s->tail;
+    if (!s->bs)
+        return (FALSE);
+    bs = s->bs;
+    while (bs)
+    {
+        if (is_max(s, current->content))
+            return (TRUE);
+        current = current->previous;
+        bs--;
+    }
+    return (FALSE);
+}
+

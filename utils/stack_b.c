@@ -55,7 +55,7 @@ void    rev_rotate_b(t_stack *s, int muted)
     t_node *old_top;
     t_node *tail_previous;
 
-    if (s->top && s->top->next)
+    if (s->top && s->tail)
     {
         old_top = s->top;
         tail_previous = s->tail->previous;
@@ -63,7 +63,8 @@ void    rev_rotate_b(t_stack *s, int muted)
         s->top->next = old_top;
         s->top->previous = NULL;
         s->tail = tail_previous;
-        s->tail->next = NULL;
+        if (s->tail)
+            s->tail->next = NULL;
         if (!muted)
             write(1, "rrb\n", 4);
     }

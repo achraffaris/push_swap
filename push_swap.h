@@ -6,6 +6,8 @@
 # define TRUE 1
 # define STACK_A 'a'
 # define STACK_B 'b'
+# define RA 2
+# define RRA 3
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -70,5 +72,5 @@ int                 exists(int *ref_arr, int node_id, int start, int end);
 void                chunk_sort(t_stack *a, t_stack *b);
 char                max_found_in(t_stack *a, t_stack *b, int bs);
 int                 is_max_bs(t_stack *s, int bs, int nb);
-
+int                 max_found_in_bs(t_stack *s);
 #endif
