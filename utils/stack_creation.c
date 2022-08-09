@@ -78,7 +78,13 @@ void    reference_creation(int ac, char **av, t_stack *s)
         raise_error();
     s->reference->middle = s->reference->size / 2;
     s->reference->start = s->reference->middle - s->offset;
+    if (s->reference->start < 0)
+        s->reference->start = 0;
     s->reference->end = s->reference->middle + s->offset;
+    if (s->reference->end >= s->reference->size)
+        s->reference->end = s->reference->size - 1;
+    s->reference->least_size = (s->reference->middle + 1) - s->reference->start;
+    s->reference->greatest_size = s->reference->end - s->reference->middle;
     copy->size = s->size;
     sort_reference_array(copy, s);
 }

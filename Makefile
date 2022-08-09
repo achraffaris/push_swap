@@ -17,6 +17,8 @@ SRCS = 	push_swap.c \
 		utils/stack_ab.c \
 		utils/stack_creation.c \
 		utils/stack_utils.c \
+		utils/chunk_sort.c \
+		utils/chunk_sort_utils.c
 
 BSRCS = bonus/checker.c \
 		bonus/stack_a_bonus.c \

@@ -29,7 +29,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/workspace/push_swap/a.out",
-            "args": ["5","2","1"],
+            "args": ["25", "38", "12", "50", "35", "9", "27", "49", "26", "3", "39", "30"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
