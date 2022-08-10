@@ -45,7 +45,7 @@ void    stack_b_migration(t_stack *a, t_stack *b)
 {
     int max_loc;
 
-    while (b->top)
+    while (b->top || a->bottom_space->start)
     {
         max_loc = max_location(a, b);
         if (max_loc == STACK_B)

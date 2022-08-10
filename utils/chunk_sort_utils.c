@@ -48,7 +48,9 @@ int max_location(t_stack *a, t_stack *b)
     ** otherwise, stack_b should be returned since the max of stack-b bottom is different from max stack_b;
     ** in a nutshell, b_bottom_max will always hold the max regardless of it location.
     */
-    if (a_bottom_max && a_bottom_max->content > b_max->content)
+    if (!b->top)
+        return (BOTTOM_STACK_A);
+    if (a_bottom_max && (a_bottom_max->content > b_max->content))
         return (BOTTOM_STACK_A);
     else
     {
