@@ -92,5 +92,9 @@ void                update_reference_indexes(t_stack *s, int lt, int gt);
 void                chunk_sort(t_stack *a, t_stack *b);
 t_node              *find_max(t_node *start);
 int                 max_location(t_stack *a, t_stack *b);
+void                max_move_up(t_stack *a, t_stack *b, int stack);
+void                move_bottom_to_top(t_stack *s, int stack);
+void                stack_a_migration(t_stack *a, t_stack *b);
+void                stack_b_migration(t_stack *a, t_stack *b);
 
 #endif

@@ -61,27 +61,9 @@ void    stack_b_migration(t_stack *a, t_stack *b)
                 add_to_bottom(b, STACK_B);
         }
         else if (max_loc == BOTTOM_STACK_B)
-        {
-            while (b->bottom_space->start)
-            {
-                move_bottom_to_top(b, STACK_B);
-                if (is_max(b->top, b->top))
-                    break;
-            }
-        }
+            max_move_up(a, b, BOTTOM_STACK_B);
         else
-        {
-            while (a->bottom_space->start)
-            {
-                if (is_max(a->bottom_space->start, a->tail))
-                {
-                    move_bottom_to_top(a, STACK_A);
-                    break;
-                }
-                move_bottom_to_top(a, STACK_A);
-                push_b(a, b, FALSE);
-            }
-        }
+            max_move_up(a, b, BOTTOM_STACK_A);
     }
     
 }
@@ -115,10 +97,4 @@ void    stack_a_migration(t_stack *a, t_stack *b)
         else
             rotate_a(a, FALSE);
     }
-}
-
-void    chunk_sort(t_stack *a, t_stack *b)
-{
-    stack_a_migration(a, b);
-    stack_b_migration(a, b);
 }

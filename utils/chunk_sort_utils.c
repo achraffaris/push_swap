@@ -60,3 +60,29 @@ int max_location(t_stack *a, t_stack *b)
             return (STACK_B);
     }
 }
+
+void    max_move_up(t_stack *a, t_stack *b, int stack)
+{
+    if (stack == BOTTOM_STACK_B)
+    {
+        while (b->bottom_space->start)
+        {
+            move_bottom_to_top(b, STACK_B);
+            if (is_max(b->top, b->top))
+                    break;
+        }
+    }
+    else if (stack == BOTTOM_STACK_A)
+    {
+        while (a->bottom_space->start)
+        {
+            if (is_max(a->bottom_space->start, a->tail))
+            {
+                move_bottom_to_top(a, STACK_A);
+                break;
+            }
+            move_bottom_to_top(a, STACK_A);
+            push_b(a, b, FALSE);
+        }
+    }
+}
