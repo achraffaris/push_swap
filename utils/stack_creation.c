@@ -105,7 +105,7 @@ t_stack *stack_a_creation(int ac, char **av)
     else if (s->size <= 150)
         s->n = 8;
     else
-        s->n = 18;
+        s->n = 16;
     s->offset = s->size / s->n;
     s->bottom_space = malloc(sizeof(s->bottom_space));
     if (!s->bottom_space)
