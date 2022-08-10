@@ -4,9 +4,9 @@ void    sort_3n(t_stack *s)
 {
     while (!is_sorted(s))
     {
-        if (is_max(s, s->top->content))
+        if (is_max(s->top, s->top))
         {
-            if (is_min(s, s->top->next->content))
+            if (is_min(s->top, s->top->next))
                 rotate_a(s, FALSE);
             else
             {
@@ -14,7 +14,7 @@ void    sort_3n(t_stack *s)
                 swap_a(s, FALSE);
             }
         }
-        else if (is_min(s, s->top->content))
+        else if (is_min(s->top, s->top))
         {
             rev_rotate_a(s, FALSE);
             swap_a(s, FALSE);
@@ -29,11 +29,11 @@ void    sort_4n(t_stack *a, t_stack *b)
     t_node  *tail_previous;
 
     tail_previous = get_node_previous(a, a->tail);
-    if (is_min(a, a->top->next->content))
+    if (is_min(a->top, a->top->next))
         swap_a(a, FALSE);
-    else if (is_min(a, a->tail->content))
+    else if (is_min(a->top, a->tail))
         rev_rotate_a(a, FALSE);
-    else if (is_min(a, tail_previous->content))
+    else if (is_min(a->top, tail_previous))
     {
         rev_rotate_a(a, FALSE);
         rev_rotate_a(a, FALSE);
@@ -48,16 +48,16 @@ void    sort_5n(t_stack *a, t_stack *b)
     t_node  *tail_previous;
 
     tail_previous = get_node_previous(a, a->tail);
-    if (is_min(a, a->top->next->content))
+    if (is_min(a->top, a->top->next))
         swap_a(a, FALSE);
-    else if (is_min(a, a->tail->content))
+    else if (is_min(a->top, a->tail))
         rev_rotate_a(a, FALSE);
-    else if (is_min(a, a->top->next->next->content))
+    else if (is_min(a->top, a->top->next->next))
     {
         rotate_a(a, FALSE);
         rotate_a(a, FALSE);
     }
-    else if (is_min(a, tail_previous->content))
+    else if (is_min(a->top, tail_previous))
     {
         rev_rotate_a(a, FALSE);
         rev_rotate_a(a, FALSE);

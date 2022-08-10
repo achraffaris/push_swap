@@ -12,6 +12,11 @@ void    swap_b(t_stack *s, int muted)
         a->next = b->next;
         b->next = a;
         s->top = b;
+        if (s->size == 2)
+        {
+            s->tail = a;
+            s->tail->next = NULL;
+        }
         if (!muted)
             write(1, "sb\n", 3);
     }

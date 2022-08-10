@@ -19,6 +19,73 @@ int node_id_found(t_stack *s, int node_id, int *index)
     return (FALSE);
 }
 
+void    add_to_bottom(t_stack *s, int stack)
+{
+    if (stack == STACK_B)
+        rotate_b(s, FALSE);
+    else
+        rotate_a(s, FALSE);
+    if (!s->bottom_space->start)
+        s->bottom_space->start = s->tail;
+    s->bottom_space->size++;
+}
+
+void    move_bottom_to_top(t_stack *s, int stack)
+{
+    if (stack == STACK_B)
+        rev_rotate_b(s, FALSE);
+    else
+        rev_rotate_a(s, FALSE);
+    s->bottom_space->size--;
+    if (s->bottom_space->size == 0)
+        s->bottom_space->start = NULL;
+}
+
+void    stack_b_migration(t_stack *a, t_stack *b)
+{
+    int max_loc;
+
+    while (b->top)
+    {
+        max_loc = max_location(a, b);
+        if (max_loc == STACK_B)
+        {
+            if (is_max(b->top, b->top))
+                push_a(a, b, FALSE);
+            else if ((a->size && a->bottom_space->size == 0) || (a->tail && b->top->content > a->tail->content))
+            {
+                push_a(a, b, FALSE);
+                add_to_bottom(a, STACK_A);
+            }
+            else
+                add_to_bottom(b, STACK_B);
+        }
+        else if (max_loc == BOTTOM_STACK_B)
+        {
+            while (b->bottom_space->start)
+            {
+                move_bottom_to_top(b, STACK_B);
+                if (is_max(b->top, b->top))
+                    break;
+            }
+        }
+        else
+        {
+            while (a->bottom_space->start)
+            {
+                if (is_max(a->bottom_space->start, a->tail))
+                {
+                    move_bottom_to_top(a, STACK_A);
+                    break;
+                }
+                move_bottom_to_top(a, STACK_A);
+                push_b(a, b, FALSE);
+            }
+        }
+    }
+    
+}
+
 void    stack_a_migration(t_stack *a, t_stack *b)
 {
     int lt;
@@ -48,10 +115,10 @@ void    stack_a_migration(t_stack *a, t_stack *b)
         else
             rotate_a(a, FALSE);
     }
-    
 }
 
 void    chunk_sort(t_stack *a, t_stack *b)
 {
     stack_a_migration(a, b);
+    stack_b_migration(a, b);
 }

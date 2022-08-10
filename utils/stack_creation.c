@@ -9,6 +9,9 @@ t_stack *empty_stack_creation()
         raise_error();
     s->tail = NULL;
     s->top = NULL;
+    s->bottom_space = malloc(sizeof(s->bottom_space));
+    if (!s->bottom_space)
+        raise_error();
     return (s);
 }
 
@@ -21,7 +24,7 @@ void    sort_reference_array(t_stack *copy, t_stack *s)
     tmp = empty_stack_creation();
     while (copy->top)
     {
-        if (is_min(copy, copy->top->content))
+        if (is_min(copy->top, copy->top))
         {
             s->reference->array[i] = copy->top->id;
             transfer_top(copy, tmp);
@@ -104,6 +107,10 @@ t_stack *stack_a_creation(int ac, char **av)
     else
         s->n = 18;
     s->offset = s->size / s->n;
+    s->bottom_space = malloc(sizeof(s->bottom_space));
+    if (!s->bottom_space)
+        raise_error();
+    s->bottom_space->start = NULL;
     nodes_creation(ac, av, s);
     reference_creation(ac, av, s);
     return (s);

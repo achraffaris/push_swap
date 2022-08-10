@@ -32,6 +32,7 @@ int main(int ac, char **av)
     else
         chunk_sort(a, b);
     // print_stack(b, "stack_a_migration");
+    // print_stack(a, "really ?");
     // if (is_sorted(a))
     //     printf("\033[32m Sorted successfully!!\n");
     // else

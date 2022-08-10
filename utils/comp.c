@@ -1,29 +1,29 @@
 #include "../push_swap.h"
 
-int is_max(t_stack *s, int n)
+int is_max(t_node *start, t_node *node)
 {
     t_node *current;
 
-    current = s->top;
+    current = start;
     while (current)
     {
-        if (current->content > n)
-            return (0);
+        if (current->content > node->content)
+            return (FALSE);
         current = current->next;   
     }
-    return (1);
+    return (TRUE);
 }
 
-int is_min(t_stack *s, int n)
+int is_min(t_node *start, t_node *node)
 {
     t_node *current;
 
-    current = s->top;
+    current = start;
     while (current)
     {
-        if (current->content < n)
-            return (0);
+        if (current->content < node->content)
+            return (FALSE);
         current = current->next;   
     }
-    return (1);
+    return (TRUE);
 }

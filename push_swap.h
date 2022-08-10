@@ -4,8 +4,10 @@
 # define INT_MIN 2147483648
 # define FALSE 0
 # define TRUE 1
-# define STACK_A 'a'
-# define STACK_B 'b'
+# define BOTTOM_STACK_A 0
+# define BOTTOM_STACK_B 1
+# define STACK_B 2
+# define STACK_A 3
 # define RA 2
 # define RRA 3
 #include <stdlib.h>
@@ -66,8 +68,8 @@ int                 is_sorted(t_stack *s);
 int                 ft_strlen(char *str);
 int                 ft_strcmp(char *s1, char *s2);
 void                sort_3n(t_stack *s);
-int                 is_min(t_stack *s, int n);
-int                 is_max(t_stack *s, int n);
+int                 is_min(t_node *start, t_node *node);
+int                 is_max(t_node *start, t_node *node);
 void                swap_b(t_stack *s, int muted);
 void                sort_5n(t_stack *a, t_stack *b);
 void                sort_4n(t_stack *a, t_stack *b);
@@ -88,5 +90,7 @@ void                reference_creation(int ac, char **av, t_stack *s);
 t_stack             *stack_a_creation(int ac, char **av);
 void                update_reference_indexes(t_stack *s, int lt, int gt);
 void                chunk_sort(t_stack *a, t_stack *b);
+t_node              *find_max(t_node *start, int *pos);
+int                 max_location(t_stack *a, t_stack *b);
 
 #endif
