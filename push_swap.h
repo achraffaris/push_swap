@@ -90,7 +90,7 @@ void                reference_creation(int ac, char **av, t_stack *s);
 t_stack             *stack_a_creation(int ac, char **av);
 void                update_reference_indexes(t_stack *s, int lt, int gt);
 void                chunk_sort(t_stack *a, t_stack *b);
-t_node              *find_max(t_node *start, int *pos);
+t_node              *find_max(t_node *start);
 int                 max_location(t_stack *a, t_stack *b);
 
 #endif
