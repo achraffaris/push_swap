@@ -9,7 +9,7 @@ t_stack *empty_stack_creation()
         raise_error();
     s->tail = NULL;
     s->top = NULL;
-    s->bottom_space = malloc(sizeof(s->bottom_space));
+    s->bottom_space = malloc(sizeof(t_bottom_space));
     if (!s->bottom_space)
         raise_error();
     return (s);
@@ -72,11 +72,11 @@ void    reference_creation(int ac, char **av, t_stack *s)
 
     copy = empty_stack_creation();
     nodes_creation(ac, av, copy);
-    s->reference = malloc(sizeof(s->reference));
+    s->reference = malloc(sizeof(t_reference));
     if (!s->reference)
         raise_error();
     s->reference->size = ac - 1;
-    s->reference->array = malloc(sizeof(t_stack) * s->reference->size);
+    s->reference->array = malloc(sizeof(int) * s->reference->size);
     if (!s->reference->array)
         raise_error();
     s->reference->middle = s->reference->size / 2;
@@ -107,7 +107,7 @@ t_stack *stack_a_creation(int ac, char **av)
     else
         s->n = 16;
     s->offset = s->size / s->n;
-    s->bottom_space = malloc(sizeof(s->bottom_space));
+    s->bottom_space = malloc(sizeof(t_bottom_space));
     if (!s->bottom_space)
         raise_error();
     s->bottom_space->start = NULL;
@@ -115,4 +115,3 @@ t_stack *stack_a_creation(int ac, char **av)
     reference_creation(ac, av, s);
     return (s);
 }
-
