@@ -20,18 +20,22 @@ SRCS = 	push_swap.c \
 		utils/chunk_sort.c \
 		utils/chunk_sort_utils.c
 
-BSRCS = bonus/checker.c \
-		bonus/stack_a_bonus.c \
-		bonus/stack_b_bonus.c \
+BSRCS = bonus/bonus_checker.c \
 		utils/common.c \
 		utils/ft_atoi.c \
 		utils/ft_errors.c \
+		utils/stack_a.c \
+		utils/stack_b.c \
 		utils/checker.c \
 		utils/mini_sort.c \
 		utils/comp.c \
+		utils/stack_ab.c \
+		utils/stack_creation.c \
+		utils/stack_utils.c \
+		utils/chunk_sort.c \
+		utils/chunk_sort_utils.c \
 		utils/get_next_line/get_next_line_utils.c \
 		utils/get_next_line/get_next_line.c \
-		utils/stack_ab.c
 		
 BOBJS = $(BSRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)
@@ -55,7 +59,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME) $(NAME_BONUS)
-	@rm -rf push_swap
+	@rm -rf push_swap checker
 
 re : fclean all
 

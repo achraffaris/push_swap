@@ -1,19 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_errors.c                                        :+:      :+:    :+:   */
+/*   comp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaris <afaris@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 11:07:41 by afaris            #+#    #+#             */
-/*   Updated: 2022/07/20 11:27:30 by afaris           ###   ########.fr       */
+/*   Created: 2022/08/11 12:55:56 by afaris            #+#    #+#             */
+/*   Updated: 2022/08/11 12:59:50 by afaris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void    raise_error()
+int	is_max(t_node *start, t_node *node)
 {
-    write(1, "Error\n", 7);
-    exit(EXIT_FAILURE);
+	t_node	*current;
+
+	current = start;
+	while (current)
+	{
+		if (current->content > node->content)
+			return (FALSE);
+		current = current->next;
+	}
+	return (TRUE);
+}
+
+int	is_min(t_node *start, t_node *node)
+{
+	t_node	*current;
+
+	current = start;
+	while (current)
+	{
+		if (current->content < node->content)
+			return (FALSE);
+		current = current->next;
+	}
+	return (TRUE);
 }
