@@ -96,5 +96,7 @@ void                max_move_up(t_stack *a, t_stack *b, int stack);
 void                move_bottom_to_top(t_stack *s, int stack);
 void                stack_a_migration(t_stack *a, t_stack *b);
 void                stack_b_migration(t_stack *a, t_stack *b);
+void                free_stack(t_stack *s);
+void                remove_top(t_stack *s);
 
 #endif

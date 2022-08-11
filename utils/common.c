@@ -33,3 +33,17 @@ int	ft_strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
+
+void	remove_top(t_stack *s)
+{
+	t_node *top;
+
+	top = s->top;
+	if (top)
+	{
+		s->top = top->next;
+		free(top);
+		if (!s->top)
+			s->tail = NULL;
+	}
+}

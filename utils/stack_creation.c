@@ -10,18 +10,22 @@ t_stack *empty_stack_creation()
     s->tail = NULL;
     s->top = NULL;
     s->bottom_space = malloc(sizeof(t_bottom_space));
+    s->bottom_space->size = 0;
+    s->bottom_space->start = NULL;
+    s->reference = NULL;
     if (!s->bottom_space)
         raise_error();
+    s->size = 0;
     return (s);
 }
 
 void    sort_reference_array(t_stack *copy, t_stack *s)
 {
     int i;
-
-    i = 0;
     t_stack *tmp;
+
     tmp = empty_stack_creation();
+    i = 0;
     while (copy->top)
     {
         if (is_min(copy->top, copy->top))
@@ -33,6 +37,8 @@ void    sort_reference_array(t_stack *copy, t_stack *s)
         else
             rotate_a(copy, TRUE);
     }
+    free_stack(copy);
+    free_stack(tmp);
 }
 
 void    nodes_creation(int ac, char **av, t_stack *s)
