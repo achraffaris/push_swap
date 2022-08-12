@@ -6,7 +6,7 @@
 /*   By: afaris <afaris@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:18:11 by afaris            #+#    #+#             */
-/*   Updated: 2022/08/11 21:45:40 by afaris           ###   ########.fr       */
+/*   Updated: 2022/08/12 14:17:52 by afaris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ int	main(int ac, char **av)
 		chunk_sort(a, b);
 	free_stack(a);
 	free_stack(b);
+	// system("leaks push_swap");
 }

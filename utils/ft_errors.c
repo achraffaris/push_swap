@@ -6,7 +6,7 @@
 /*   By: afaris <afaris@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:07:41 by afaris            #+#    #+#             */
-/*   Updated: 2022/08/11 12:58:22 by afaris           ###   ########.fr       */
+/*   Updated: 2022/08/11 22:09:39 by afaris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	raise_error(void)
 {
-	write(1, "Error\n", 7);
+	write(2, "Error\n", 7);
 	exit(EXIT_FAILURE);
 }

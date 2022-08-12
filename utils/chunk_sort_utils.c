@@ -6,7 +6,7 @@
 /*   By: afaris <afaris@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:00:57 by afaris            #+#    #+#             */
-/*   Updated: 2022/08/11 13:03:10 by afaris           ###   ########.fr       */
+/*   Updated: 2022/08/12 08:33:34 by afaris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int	max_location(t_stack *a, t_stack *b)
 	t_node	*b_max;
 
 	b_bottom_max = find_max(b->bottom_space->start);
-	a_bottom_max = find_max(a->bottom_space->start);
+	a_bottom_max = a->tail;
 	b_max = find_max(b->top);
 	if (!b->top)
 		return (BOTTOM_STACK_A);
-	if (a_bottom_max && (a_bottom_max->content > b_max->content))
+	if (a->bottom_space->size && (a_bottom_max->content > b_max->content))
 		return (BOTTOM_STACK_A);
 	else
 	{

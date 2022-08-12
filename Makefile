@@ -20,7 +20,7 @@ SRCS = 	push_swap.c \
 		utils/chunk_sort.c \
 		utils/chunk_sort_utils.c
 
-BSRCS = bonus/bonus_checker.c \
+BSRCS = bonus/checker_bonus.c \
 		utils/common.c \
 		utils/ft_atoi.c \
 		utils/ft_errors.c \

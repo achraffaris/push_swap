@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_checker.c                                    :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaris <afaris@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:17:04 by afaris            #+#    #+#             */
-/*   Updated: 2022/08/11 21:45:45 by afaris           ###   ########.fr       */
+/*   Updated: 2022/08/11 23:44:55 by afaris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "checker_bonus.h"
 
 void	free_stack(t_stack *s)
 {
@@ -50,8 +50,10 @@ void	exec_actions(t_stack *a, t_stack *b, char *action)
 		rev_rotate_b(b, TRUE);
 	else if (ft_strcmp(action, SS) == 0)
 		swap_ab(a, b, TRUE);
-	else if (ft_strcmp(action, RRR) == 0)
+	else if (ft_strcmp(action, RR) == 0)
 		rotate_ab(a, b, TRUE);
+	else if (ft_strcmp(action, RRR) == 0)
+		rev_rotate_ab(a, b, TRUE);
 	else if (ft_strcmp(action, PB) == 0)
 		push_b(a, b, TRUE);
 	else if (ft_strcmp(action, PA) == 0)

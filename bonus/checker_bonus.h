@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaris <afaris@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:17:00 by afaris            #+#    #+#             */
-/*   Updated: 2022/08/11 21:31:33 by afaris           ###   ########.fr       */
+/*   Updated: 2022/08/11 23:45:20 by afaris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
 
 # define SA "sa\n"
 # define SB "sb\n"
@@ -23,6 +23,7 @@
 # define RRR "rrr\n"
 # define PA "pa\n"
 # define PB "pb\n"
+# define RR "rr\n"
 # include "../push_swap.h"
 
 #endif
